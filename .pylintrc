@@ -34,6 +34,8 @@ load-plugins=
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
 #disable=
+# C0111: Missing Docstring
+disable=C0111
 
 
 [REPORTS]
