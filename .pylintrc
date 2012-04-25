@@ -35,7 +35,8 @@ load-plugins=
 # it should appear only once).
 #disable=
 # C0111: Missing Docstring
-disable=C0111
+# W0142: Used *args or **kwargs
+disable=C0111,W0142
 
 
 [REPORTS]
