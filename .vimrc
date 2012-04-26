@@ -50,6 +50,10 @@ set undoreload=1000
 set swapfile
 set directory=~/.vim/tmp/swap
 
+" backups
+set backup
+set backupdir=~/.vim/tmp/backup
+
 " syntax coloring
 let g:solarized_termcolors=256
 syntax enable
