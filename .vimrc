@@ -30,3 +30,7 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
+
+" syntax coloring
+syntax enable
+set background=dark
