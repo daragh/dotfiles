@@ -40,6 +40,12 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+" persistent undo
+set undofile
+set undodir=~/.vim/tmp/undo
+set undolevels=1000
+set undoreload=1000
+
 " syntax coloring
 let g:solarized_termcolors=256
 syntax enable
