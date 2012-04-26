@@ -4,3 +4,7 @@ set tabstop=2
 set shiftwidth=2
 " treat spaces like tabs
 set softtabstop=2
+" wrap lines
+set wrap
+" set text width
+set textwidth=79

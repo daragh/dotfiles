@@ -25,6 +25,11 @@ set number
 " show ruler
 set ruler
 
+" wrap lines
+set wrap
+" set text width
+set textwidth=79
+
 " disable arrow keys
 map <up> <nop>
 map <down> <nop>
