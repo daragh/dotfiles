@@ -1,3 +1,7 @@
+" pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
 " vim mode
 set nocompatible
 
