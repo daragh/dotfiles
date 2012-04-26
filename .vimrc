@@ -46,6 +46,10 @@ set undodir=~/.vim/tmp/undo
 set undolevels=1000
 set undoreload=1000
 
+" swapfiles
+set swapfile
+set directory=~/.vim/tmp/swap
+
 " syntax coloring
 let g:solarized_termcolors=256
 syntax enable
