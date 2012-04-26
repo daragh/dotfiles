@@ -36,5 +36,7 @@ imap <left> <nop>
 imap <right> <nop>
 
 " syntax coloring
+let g:solarized_termcolors=256
 syntax enable
 set background=dark
+colorscheme solarized
