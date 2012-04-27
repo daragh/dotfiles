@@ -3,4 +3,4 @@
 	email = daragh.casey@gmail.com
 
 [alias]
-	chart = log --graph --all --format=format:'%C(bold red)%h%C(reset) %cn %C(bold green)(%cr)%C(reset)%C(bold red)%d%C(reset) %s' --abbrev-commit --date=relative
+	chart = log --graph --all --format=format:'%C(red)%h%C(reset) %cn %C(green)(%cr)%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --date=relative
