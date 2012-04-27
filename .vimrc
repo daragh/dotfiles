@@ -8,7 +8,7 @@ set nocompatible
 " use ftplugin
 filetype plugin on
 
-" inset spaces for tab key
+" expand tabs to spaces
 set expandtab
 
 " automatically indent to level of preceding line
