@@ -5,6 +5,8 @@ export PS1='%~ %# '
 HISTFILE=$HOME/.histfile
 HISTSIZE=500000
 SAVEHIST=100000
+# don't keep duplicate commands (more than once in a raw) in history
+setopt histignoredups
 
 # autocomplete
 autoload -U compinit
