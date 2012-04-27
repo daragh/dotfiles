@@ -10,6 +10,10 @@ filetype plugin on
 
 " expand tabs to spaces
 set expandtab
+" set tabs to 4 spaces
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 " automatically indent to level of preceding line
 set autoindent
