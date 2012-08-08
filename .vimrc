@@ -45,10 +45,10 @@ imap <left> <nop>
 imap <right> <nop>
 
 " persistent undo
-set undofile
-set undodir=~/.vim/tmp/undo
+" set undofile
+" set undodir=~/.vim/tmp/undo
 set undolevels=1000
-set undoreload=1000
+" set undoreload=1000
 
 " swapfiles
 set swapfile
