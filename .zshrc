@@ -20,6 +20,7 @@ export PATH=$HOME/code/bin:/usr/local/bin:$PATH
 
 # python
 export PYTHONPATH=$HOME/code/python:$PYTHONPATH
+export PYTHONDONTWRITEBYTECODE=true
 
 # aliases
 alias ll='ls -lh'
