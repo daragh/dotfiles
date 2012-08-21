@@ -13,7 +13,7 @@ autoload -U compinit
 compinit
 
 # editor
-export EDITOR=vi
+export EDITOR=vim
 
 # path
 export PATH=$HOME/code/bin:$PATH
