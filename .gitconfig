@@ -10,3 +10,6 @@
     dc = diff --cached
     co = checkout
     ci = commit
+
+[color]
+	ui = auto
