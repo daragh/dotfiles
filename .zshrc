@@ -16,7 +16,7 @@ compinit
 export EDITOR=vim
 
 # path
-export PATH=$HOME/code/bin:$PATH
+export PATH=$HOME/code/bin:/usr/local/bin:$PATH
 
 # python
 export PYTHONPATH=$HOME/code/python:$PYTHONPATH
