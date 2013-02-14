@@ -64,6 +64,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" ctrl-p ignore pyc files
+" ignore pyc files
 set wildignore+=*.pyc
 
