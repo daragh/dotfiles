@@ -21,3 +21,5 @@
 	templatedir = ~/.git_template
 [merge]
 	tool = vimdiff
+[core]
+	excludesfile = ~/.gitignore_global
