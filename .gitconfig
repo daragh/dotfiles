@@ -9,5 +9,6 @@
     dc = diff --cached
     co = checkout
     ci = commit
+    br = branch
 [color]
 	ui = auto
