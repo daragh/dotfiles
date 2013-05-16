@@ -14,3 +14,5 @@
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore_global
+[init]
+	templatedir = ~/.git_template
