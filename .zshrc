@@ -1,3 +1,5 @@
+source $HOME/bin/git-prompt.sh
+
 # prompt
 export PS1='%~ %# '
 
