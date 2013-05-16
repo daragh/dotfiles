@@ -12,3 +12,5 @@
     br = branch
 [color]
 	ui = auto
+[core]
+	excludesfile = ~/.gitignore_global
