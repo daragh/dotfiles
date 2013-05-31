@@ -67,3 +67,7 @@ colorscheme solarized
 " ignore pyc files
 set wildignore+=*.pyc
 
+" no syntax highlighting for vimdiff
+if &diff
+    syntax off
+endif
