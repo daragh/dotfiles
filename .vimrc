@@ -71,3 +71,6 @@ set wildignore+=*.pyc
 if &diff
     syntax off
 endif
+
+" set git commit message cursor to start
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
