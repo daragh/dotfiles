@@ -10,6 +10,7 @@
     co = checkout
     ci = commit
     br = branch
+    mt = mergetool
 [color]
 	ui = auto
 [core]
