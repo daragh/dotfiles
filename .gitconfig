@@ -11,6 +11,7 @@
     ci = commit
     br = branch
     mt = mergetool
+    ff = merge --ff-only
 [color]
 	ui = auto
 [core]
