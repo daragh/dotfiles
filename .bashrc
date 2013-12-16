@@ -6,7 +6,7 @@ PATH=$HOME/bin:$PATH
 export PATH
 
 
-unalias ls
+unalias ls 2>/dev/null
 alias ll='ls -lh'
 alias la='ll -a'
 alias lt='ll -tr'
