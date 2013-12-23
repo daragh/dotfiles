@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 remove_trailing_whitespace_from_changed_lines() {
-    patch=$(mktemp --tmpdir remove-trailing-whitespace-patch-XXXXX)
+    patch=$(mktemp /tmp/remove-trailing-whitespace-patch-XXXXX)
     git diff --cached --no-color --diff-filter=M > "$patch"
     git apply --index --reverse "$patch"
     git apply --index --whitespace=fix "$patch"
