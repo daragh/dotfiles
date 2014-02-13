@@ -2,8 +2,7 @@
 	name = Daragh Casey
 	email = daragh.casey@gmail.com
 [alias]
-    chart = log --graph --all --format=format:'%C(red)%h%C(reset) %an %C(green)(%ad)%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --date=relative
-    chartbranch = log --graph --format=format:'%C(red)%h%C(reset) %an %C(green)(%ad)%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --date=relative
+    chart = log --graph --format=format:'%C(red)%h%C(reset) %an %C(green)(%ad)%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --date=relative
     aa = add --all
     st = status
     di = diff
