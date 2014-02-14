@@ -2,6 +2,9 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+" command history
+set history=10000
+
 " vim mode
 set nocompatible
 
