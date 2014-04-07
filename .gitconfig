@@ -12,6 +12,7 @@
     br = branch
     mt = mergetool
     ff = merge --ff-only
+    fa = fetch --all
 [color]
 	ui = auto
 [core]
