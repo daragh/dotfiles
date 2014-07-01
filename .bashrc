@@ -18,17 +18,14 @@ export TERM=xterm-256color
 
 source $HOME/bin/git-completion.bash
 
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM=true
+
 function __my__git_ps1 {
-    export GIT_PS1_SHOWDIRTYSTATE=true
-    export GIT_PS1_SHOWSTASHSTATE=true
-    export GIT_PS1_SHOWUNTRACKEDFILES=true
-    export GIT_PS1_SHOWUPSTREAM=true
     if [[ ! -z $(__gitdir) ]]; then
-        if [[ $(pwd) =~ $HOME ]]; then
-            __git_ps1;
-        else
-            echo " (?)";
-        fi
+        __git_ps1;
     fi
 }
 
