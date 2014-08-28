@@ -24,7 +24,8 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM=true
 
 function __my__git_ps1 {
-    if [[ ! -z $(__gitdir) ]]; then
+    if [[ ! -z $(__gitdir) ]]
+    then
         __git_ps1;
     fi
 }
