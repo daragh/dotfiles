@@ -30,6 +30,14 @@ function __my__git_ps1 {
 }
 
 
+function __hostname_if_ssh_session {
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
+    then
+        echo "@$(hostname -s)"
+    fi
+}
+
+
 function __exit_status {
     status=$?;
     green=$'\E[1;32m'
@@ -43,7 +51,7 @@ function __exit_status {
     echo "${color}${status}${none}";
 }
 
-export PS1='[$(__exit_status) \A \u@\h]\n\w$(__my__git_ps1) % '
+export PS1='[$(__exit_status) \A \u$(__hostname_if_ssh_session)]\n\w$(__my__git_ps1) % '
 export PYTHONDONTWRITEBYTECODE=true
 
 export HISTTIMEFORMAT="%Y-%m-%d %T "
