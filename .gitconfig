@@ -4,6 +4,7 @@
 [alias]
     chart = log --graph --format=format:'%C(red)%h%C(reset) %an %C(green)(%ad)%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --date=relative
     aa = add --all
+    au = add --update
     st = status
     di = diff
     dc = diff --cached
