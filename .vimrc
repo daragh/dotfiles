@@ -2,6 +2,7 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+
 " command history
 set history=10000
 
@@ -77,3 +78,15 @@ endif
 
 " set git commit message cursor to start
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
+" Indent if we're at the beginning of a line. Else, do completion.
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
