@@ -1,11 +1,27 @@
 #!/usr/bin/env python
 
-import sys, os, re, tempfile, hashlib, StringIO
+import sys
+import os
+from os.path import normpath, abspath, exists, relpath, dirname, basename
+from itertools import tee, izip
+from tempfile import gettempdir, mkstemp
+import hashlib
+from StringIO import StringIO
+from contextlib import contextmanager
+from multiprocessing import Pool
+
+
+@contextmanager
+def temporary_file():
+    (fd, temp_path) = mkstemp(dir=gettempdir())
+    f = os.fdopen(fd, 'w')
+    yield (f, temp_path)
+    f.close()
 
 
 def sha1sum(f):
     sha1 = hashlib.sha1()
-    [sha1.update(c) for c in iter(lambda: f.read(32768), b'')]
+    [sha1.update(c) for c in iter(lambda: f.read(1024 * 1024), b'')]
     return sha1.hexdigest()
 
 
@@ -16,48 +32,52 @@ def file_paths(path):
         dirnames[:] = no_dots(dirnames)
         filenames[:] = no_dots(filenames)
         for filename in filenames:
-            yield os.path.normpath(os.path.abspath(os.path.join(root, filename)))
+            yield normpath(abspath(os.path.join(root, filename)))
 
 
 def hash_file(path):
-    tempdir = tempfile.gettempdir()
-    path_sha1 = sha1sum(StringIO.StringIO(path))
-    cache_path = os.path.join(tempdir, path_sha1)
-    if not os.path.exists(cache_path):
+    path_sha1 = sha1sum(StringIO(path))
+    cache_path = os.path.join(gettempdir(), path_sha1)
+    if not exists(cache_path):
         with open(path) as f:
             sha1 = sha1sum(f)
-        (fd, temp_path) = tempfile.mkstemp(dir=tempdir)
-        f = os.fdopen(fd, 'w')
-        f.write(sha1)
-        f.close()
+        with temporary_file() as (f, temp_path):
+            f.write(sha1)
         os.rename(temp_path, cache_path)
     with open(cache_path, 'r') as f:
         return f.read()
 
 
-def hash_directory(directory):
-    return (
-        '%s  %s' % (hash_file(path), os.path.relpath(path, directory))
-        for path in file_paths(directory))
+def hash_directory(directory, pool):
+    to_hash, to_zip = tee(file_paths(directory))
+    hashes = pool.imap(hash_file, to_hash)
+    paths = (relpath(path, directory) for path in to_zip)
+    return ('%s  %s' % pair for pair in izip(hashes, paths))
+
+
+def manifest_path(directory):
+    return os.path.join(directory, ''.join([basename(directory), '.sha1']))
+
+
+def temp_path(path):
+    return os.path.join(dirname(path), ''.join(['.', basename(path), '.tmp']))
 
 
 def main():
     directories = sys.argv[1:]
+    directories = (normpath(abspath(directory)) for directory in directories)
+    pool = Pool()
     for directory in directories:
-        directory = os.path.normpath(os.path.abspath(directory))
-        manifest_path = os.path.join(
-            directory,
-            ''.join([os.path.basename(directory), '.sha1']))
-        temp_path = os.path.join(
-            os.path.dirname(manifest_path),
-            ''.join(['.', os.path.basename(manifest_path), '.tmp']))
-        lines = []
-        for line in hash_directory(directory):
-            print line
-            lines.append(line)
-        with open(temp_path, 'w') as f:
-            f.write('\n'.join(sorted(lines, key=lambda x: x.split()[1:])))
-        os.rename(temp_path, manifest_path)
+        manifest_path_ = manifest_path(directory)
+        if os.path.exists(manifest_path_):
+            with open(manifest_path_) as f: print f.read()
+        else:
+            (lines, to_print) = tee(hash_directory(directory, pool))
+            for line in to_print: print line
+            temp_path_ = temp_path(manifest_path_)
+            with open(temp_path_, 'w') as f:
+                f.write('\n'.join(sorted(lines, key=lambda x: x.split()[1:])))
+            os.rename(temp_path_, manifest_path_)
 
 
 if __name__ == '__main__':
