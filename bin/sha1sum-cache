@@ -30,9 +30,12 @@ def file_paths(path):
         return [path for path in paths if not path.startswith('.')]
     for (root, dirnames, filenames) in os.walk(path):
         dirnames[:] = no_dots(dirnames)
-        filenames[:] = no_dots(filenames)
-        for filename in filenames:
-            yield normpath(abspath(os.path.join(root, filename)))
+        filenames = no_dots(filenames)
+        full_path = lambda x: normpath(abspath(os.path.join(root, x)))
+        filepaths = (full_path(filename) for filename in filenames)
+        filepaths = (path for path in filepaths if not os.path.islink(path))
+        for path in filepaths:
+            yield path
 
 
 def hash_file(path):
