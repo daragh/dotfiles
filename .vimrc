@@ -63,7 +63,6 @@ set backup
 set backupdir=~/.vim/tmp/backup
 
 " syntax coloring
-let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme solarized

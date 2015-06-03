@@ -14,8 +14,6 @@ alias lt='ll -tr'
 
 export HISTSIZE=100000
 
-export TERM=xterm-256color
-
 
 source $HOME/bin/git-completion.bash
 
