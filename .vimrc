@@ -90,3 +90,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
+
+" Do not use Crtl-C to exit insert mode
+imap <C-c> <nop>
