@@ -1,0 +1,90 @@
+#!/usr/bin/env python
+
+import sys
+import os
+from subprocess import Popen
+from subprocess import PIPE
+
+
+COMMIT_MESSAGE = 'automated commit'
+TODO_PATH = '~/.todo/todo.txt'
+CLEAN_STRING = 'working directory clean'
+
+
+class GitRepo(object):
+
+    def __init__(self, path):
+        self._path = path
+
+    @property
+    def path(self):
+        is_repo = lambda x: os.path.exists(os.path.join(x, '.git'))
+        path = self._path
+        while not path == '/':
+            if is_repo(path):
+                return path
+        raise Exception('%s does not appear to be in a git repo.' % self._path)
+
+    def init(self):
+        if not os.path.exists(self._path):
+            os.makedirs(self._path)
+        if not os.path.exists(os.path.join(self._path, '.git')):
+            process = Popen(['git', 'init', self._path])
+            if not process.wait() == 0:
+                raise Exception('git init failed')
+
+    def status(self):
+        old_pwd = os.getcwd()
+        os.chdir(self.path)
+        process = Popen(['git', 'status'], stdout=PIPE)
+        if not process.wait() == 0:
+            raise Exception('git status returned non-zero exit')
+        os.chdir(old_pwd)
+        return process.stdout.read()
+
+    def is_clean(self):
+        return CLEAN_STRING in self.status()
+
+    def commit(self, path):
+        old_pwd = os.getcwd()
+        os.chdir(self.path)
+        if not Popen(['git', 'add', path]).wait() == 0:
+            raise Exception('adding %s to git repo failed' % path)
+        if not Popen(['git', 'commit', '-m', COMMIT_MESSAGE]).wait() == 0:
+            raise Exception('commiting %s to git repo failed' % path)
+        os.chdir(old_pwd)
+
+
+class Todo(object):
+
+    def __init__(self, path):
+        self.path = path
+
+    def edit(self):
+        if not Popen([os.environ['EDITOR'], self.path]).wait() == 0:
+            raise Exception('Editing %s failed.' % self.path)
+
+    def append(self, message):
+        f = open(self.path, 'a')
+        try:
+            f.write(message)
+        finally:
+            f.close()
+
+
+def main():
+    path = os.path.expanduser(TODO_PATH)
+    repo = GitRepo(os.path.dirname(path))
+    repo.init()
+    todo = Todo(path)
+    if len(sys.argv) > 1:
+        todo.append(' '.join(sys.argv[1:]))
+    else:
+        todo.edit()
+    if not repo.is_clean():
+        repo.commit(path)
+
+
+if __name__ == '__main__':
+    main()
+
