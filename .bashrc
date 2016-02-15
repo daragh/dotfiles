@@ -55,3 +55,5 @@ export PS1='[$(__exit_status) \A \u$(__hostname_if_ssh_session)]\n\w$(__my__git_
 export PYTHONDONTWRITEBYTECODE=true
 
 export HISTTIMEFORMAT="%Y-%m-%d %T "
+
+alias grep='grep --color=auto'
