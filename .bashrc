@@ -1,6 +1,7 @@
 export EDITOR=vim
 set -o vi
 
+PATH=/usr/local/bin:$PATH
 PATH=$PATH:$HOME/.gem/ruby/1.8/bin
 PATH=$PATH:$HOME/.cabal/bin
 PATH=$HOME/bin:$PATH
