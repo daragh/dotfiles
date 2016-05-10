@@ -40,6 +40,7 @@ cask 'skype'
 
 brew 'exiftool'
 brew 'ffmpeg'
+brew 'imagemagick'
 cask 'handbrake'
 brew 'transmission'
 
