@@ -43,6 +43,7 @@ brew 'ffmpeg'
 brew 'imagemagick'
 cask 'handbrake'
 brew 'transmission'
+cask 'the-unarchiver'
 
 brew 'python'
 
