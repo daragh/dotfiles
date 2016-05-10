@@ -1,0 +1,11 @@
+#!/bin/sh
+(
+    cd /usr/share/zoneinfo
+    find . -type f
+) |
+sed -e 's,^./,,' |
+sort |
+while read zone
+do
+    echo "$(TZ="$zone" date +%FT%TZ%z)" "$zone"
+done
