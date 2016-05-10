@@ -44,5 +44,7 @@ brew 'imagemagick'
 cask 'handbrake'
 brew 'transmission'
 
+brew 'python'
+
 cask 'virtualbox'
 cask 'vagrant'
