@@ -1,0 +1,47 @@
+brew 'git'
+brew 'vim'
+brew 'ssh-copy-id'
+brew 'rsync'
+
+cask 'google-chrome'
+cask 'spectacle'
+cask 'iterm2'
+
+brew 'tmux'
+brew 'ncdu'
+brew 'nmap'
+brew 'hardlink'
+brew 'htop-osx'
+brew 'pstree'
+brew 'tree'
+
+brew 'osxfuse'
+brew 'homebrew/fuse/sshfs'
+brew 'homebrew/x11/curlftpfs'
+
+brew 'httpie'
+brew 'heroku'
+brew 'markdown'
+
+cask 'caffeine'
+cask 'bitbar'
+cask 'itsycal'
+cask 'scroll-reverser'
+cask 'flux'
+cask 'loading'
+
+cask 'arq'
+cask 'dropbox'
+
+cask 'spotify'
+cask 'vlc'
+
+cask 'skype'
+
+brew 'exiftool'
+brew 'ffmpeg'
+cask 'handbrake'
+brew 'transmission'
+
+cask 'virtualbox'
+cask 'vagrant'
