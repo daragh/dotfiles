@@ -58,3 +58,5 @@ export PYTHONDONTWRITEBYTECODE=true
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 
 alias grep='grep --color=auto'
+
+complete -W "$(echo $(cat ~/.ssh/config | grep -E '^Host ' | sed -e 's/^Host //'))" ssh
