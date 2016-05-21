@@ -32,6 +32,7 @@ cask 'loading'
 
 cask 'arq'
 cask 'dropbox'
+cask 'superduper'
 
 cask 'spotify'
 cask 'vlc'
