@@ -6,6 +6,9 @@ sudo -v
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
+# Verbose boot
+sudo nvram boot-args=”-v”
+
 
 # System UI
 
