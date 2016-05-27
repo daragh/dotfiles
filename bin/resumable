@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# example usage: $ resumable sha1sum paths.txt <(cut -d ' ' -f 3- sha1s.txt) | tee -a sha1s.txt
+
+comm -23 <(sort "$2") <(sort "$3") |
+while read path
+do
+    $1 "$path"
+done
